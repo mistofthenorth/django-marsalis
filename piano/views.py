@@ -18,7 +18,9 @@ def page_test(request):
     comment = Comment("this is a new comment")
     top.append(comment)
     top.attrib = {"version": "3.1"}
-    SubElement(top, 'sub_element')
+    part_list = SubElement(top, 'part-list')
+    part_name = SubElement(part_list, 'part_name')
+    part_name.text = "MusicXML Part"
 
     print(tostring(top))
 
