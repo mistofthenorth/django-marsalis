@@ -11,7 +11,6 @@ def index(request):
 
 def page_test(request):
     random_number = random.randint(1, 100)
-    print("testing log to the console")
 
     top = Element('score-partwise')
 
@@ -27,7 +26,7 @@ def page_test(request):
     instrument_name.text = "Instrument 1"
 
     part = SubElement(top, 'part')
-    part.attrib = {"id":"P1"}
+    part.attrib = {"id": "P1"}
     measure1 = SubElement(part, 'measure')
     measure1.attrib = {"number": "1"}
     note1 = SubElement(measure1, "note")
@@ -43,11 +42,11 @@ def page_test(request):
     bar_style = SubElement(barline, "bar-style")
     bar_style.text = "light-heavy"
 
-    #print(tostring(top))
-
     dom = xml.dom.minidom.parseString(tostring(top))
     pretty_xml_as_string = dom.toprettyxml()
 
     print(pretty_xml_as_string)
 
-    return HttpResponse(str(random_number))
+    html = f'<textarea rows="20" cols="100"> {pretty_xml_as_string} </textarea>'
+
+    return HttpResponse(html)
