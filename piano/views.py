@@ -5,13 +5,7 @@ import xml.dom.minidom
 import random
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the piano index.")
-
-
-def page_test(request):
-    random_number = random.randint(1, 100)
-
+def create_xml_stub():
     top = Element('score-partwise')
 
     top.attrib = {"version": "3.1"}
@@ -25,7 +19,11 @@ def page_test(request):
     instrument_name = SubElement(score_instrument, 'instrument-name')
     instrument_name.text = "Instrument 1"
 
-    part = SubElement(top, 'part')
+    return top
+
+def add_measure_to_xml(xml):
+
+    part = SubElement(xml, 'part')
     part.attrib = {"id": "P1"}
     measure1 = SubElement(part, 'measure')
     measure1.attrib = {"number": "1"}
@@ -42,10 +40,17 @@ def page_test(request):
     bar_style = SubElement(barline, "bar-style")
     bar_style.text = "light-heavy"
 
+def index(request):
+    return HttpResponse("Hello, world. You're at the piano index.")
+
+
+def page_test(request):
+
+    top = create_xml_stub()
+    add_measure_to_xml(top) 
+
     dom = xml.dom.minidom.parseString(tostring(top))
     pretty_xml_as_string = dom.toprettyxml()
-
-    print(pretty_xml_as_string)
 
     html = f'<textarea rows="20" cols="100"> {pretty_xml_as_string} </textarea>'
 
