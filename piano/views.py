@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .xmltranslate import *
+from xml.etree.ElementTree import Element, SubElement, Comment, tostring, ElementTree
+import xml.dom.minidom
+from . import xmltranslate
 
 vex_flow = """
 
@@ -73,8 +75,8 @@ def index(request):
 
 def page_test(request):
 
-    notation = create_xml_stub()
-    add_part_to_xml(notation)
+    notation = xmltranslate.create_xml_stub()
+    xmltranslate.add_part_to_xml(notation)
 
     dom = xml.dom.minidom.parseString(tostring(notation))
     pretty_xml_as_string = dom.toprettyxml()
