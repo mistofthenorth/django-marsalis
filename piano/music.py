@@ -1,9 +1,19 @@
-class Phrase():
-	pass
+class Phrase:
+	
+	def __init__(self):
 
-class Measure():
-	pass
+		self.measures = []
 
-class NoteRest():
-	pass
+class Measure:
+	
+	def __init__(self):
+
+		self.notes = []
+
+class NoteRest:
+
+	def __init__(self, duration, pitch):
+
+		self.duration = duration
+		self.pitch = pitch
 

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring, ElementTree
 import xml.dom.minidom
 from . import xmltranslate
+from . import music
 
 vex_flow = """
 
@@ -75,12 +76,14 @@ def index(request):
 
 def page_test(request):
 
+    note_test = music.NoteRest(8, "A")
+
     notation = xmltranslate.create_xml_stub()
     xmltranslate.add_part_to_xml(notation)
 
     dom = xml.dom.minidom.parseString(tostring(notation))
     pretty_xml_as_string = dom.toprettyxml()
 
-    html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea>'
+    html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea> <p>{note_test.pitch}</p>'
 
-    return HttpResponse(vex_flow)
+    return HttpResponse(html)
