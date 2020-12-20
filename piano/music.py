@@ -6,14 +6,20 @@ class Phrase:
 
 class Measure:
 	
-	def __init__(self):
+	def __init__(self, max_duration=8):
 
 		self.notes = []
-		self.duration = 0
+		self.max_duration = 8
+	
+	@property
+	def duration(self):
+		return sum([x.duration for x in self.notes])
 
 	def add_note(self, note):
-		self.notes.append(note)
-		self.duration += note.duration
+		if self.duration + note.duration > self.max_duration:
+			print("Error, too many notes in this measure")
+		else:
+			self.notes.append(note)
 
 class NoteRest:
 
@@ -21,4 +27,3 @@ class NoteRest:
 
 		self.duration = duration
 		self.pitch = pitch
-

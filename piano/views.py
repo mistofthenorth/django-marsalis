@@ -77,9 +77,10 @@ def index(request):
 def page_test(request):
 
     first_measure = music.Measure()
-    note_test = music.NoteRest(8, "A")
+    note_test = music.NoteRest(4, "A")
     first_measure.add_note(note_test)
-    print(first_measure.duration)
+    first_measure.add_note(note_test)
+    print(first_measure.notes)
 
 
     notation = xmltranslate.create_xml_stub()
