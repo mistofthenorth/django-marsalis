@@ -79,7 +79,7 @@ def page_test(request):
     first_measure = music.Measure()
     note_test = music.NoteRest(4, "A")
     first_measure.add_note(note_test)
-    first_measure.add_note(note_test)
+
     second_measure = music.Measure()
     while second_measure.duration < second_measure.max_duration:
         second_measure.add_note(music.NoteRest(2,"B"))
