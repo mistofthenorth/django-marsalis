@@ -21,9 +21,16 @@ class Measure:
 		else:
 			self.notes.append(note)
 
+	def __str__(self):
+		output_string = ''
+		return output_string.join([str(x) for x in self.notes])
+
 class NoteRest:
 
 	def __init__(self, duration, pitch):
 
 		self.duration = duration
 		self.pitch = pitch
+
+	def __str__(self):
+		return f"({self.pitch}-{self.duration})"

@@ -80,7 +80,10 @@ def page_test(request):
     note_test = music.NoteRest(4, "A")
     first_measure.add_note(note_test)
     first_measure.add_note(note_test)
-    print(first_measure.notes)
+    second_measure = music.Measure()
+    while second_measure.duration < second_measure.max_duration:
+        second_measure.add_note(music.NoteRest(2,"B"))
+    print(second_measure)
 
 
     notation = xmltranslate.create_xml_stub()
