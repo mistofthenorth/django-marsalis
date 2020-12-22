@@ -77,12 +77,12 @@ def index(request):
 def page_test(request):
 
     first_measure = music.Measure()
-    note_test = music.NoteRest(4, "A")
+    note_test = music.NoteRest(4, 60)
     first_measure.add_note(note_test)
 
     second_measure = music.Measure()
     while second_measure.duration < second_measure.max_duration:
-        second_measure.add_note(music.NoteRest(2,"B"))
+        second_measure.add_note(music.NoteRest(2,59))
     print(second_measure)
 
 
@@ -92,6 +92,6 @@ def page_test(request):
     dom = xml.dom.minidom.parseString(tostring(notation))
     pretty_xml_as_string = dom.toprettyxml()
 
-    html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea> <p>{note_test.pitch}</p>'
+    html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea> <p>{note_test.pitch_name}</p>'
 
     return HttpResponse(html)
