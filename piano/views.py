@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring, ElementTree
 import xml.dom.minidom
+import random
 from . import xmltranslate
 from . import music
 
@@ -82,7 +83,7 @@ def page_test(request):
 
     second_measure = music.Measure()
     while second_measure.duration < second_measure.max_duration:
-        second_measure.add_note(music.NoteRest(2,59))
+        second_measure.add_note(music.NoteRest(2,random.randint(21,102)))
     print(second_measure)
 
 
