@@ -1,4 +1,5 @@
 pitch_table = {
+	20 : 'Rest',
 	21 : 'A0',
 	22 : 'A#0/Bb0',
 	23 : 'B0',
@@ -95,6 +96,18 @@ class Phrase:
 	def __init__(self):
 
 		self.measures = []
+
+	def get_interval_ratio(self):
+		previous_pitch = 20
+		note_count = 0
+		pitch_distance = 0
+		for measure in self.measures:
+			for note in measure.notes:
+				distance = abs(note.pitch - previous_pitch)
+				pitch_distance = distance + pitch_distance
+				note_count += 1
+
+		return pitch_distance/note_count
 
 class Measure:
 	

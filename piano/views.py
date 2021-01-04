@@ -83,9 +83,12 @@ def page_test(request):
 
     second_measure = music.Measure()
     while second_measure.duration < second_measure.max_duration:
-        second_measure.add_note(music.NoteRest(2,random.randint(21,102)))
+        second_measure.add_note(music.NoteRest(2,random.randint(20,102)))
     print(second_measure)
 
+    my_phrase = music.Phrase()
+    my_phrase.measures = [first_measure, second_measure]
+    print(my_phrase.get_interval_ratio())
 
     notation = xmltranslate.create_xml_stub()
     xmltranslate.add_part_to_xml(notation)
