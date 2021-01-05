@@ -103,11 +103,21 @@ class Phrase:
 		pitch_distance = 0
 		for measure in self.measures:
 			for note in measure.notes:
+				if note.pitch == 20:
+					continue
 				distance = abs(note.pitch - previous_pitch)
 				pitch_distance = distance + pitch_distance
 				note_count += 1
 
-		return pitch_distance/note_count
+		if note_count > 0:
+			interval_ratio = pitch_distance/note_count
+		else:
+			interval_ratio = 0
+
+		return interval_ratio
+
+	def add_measure(self, measure):
+		self.measures.append(measure)
 
 class Measure:
 	

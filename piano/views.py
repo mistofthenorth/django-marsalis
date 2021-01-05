@@ -87,7 +87,9 @@ def page_test(request):
     print(second_measure)
 
     my_phrase = music.Phrase()
-    my_phrase.measures = [first_measure, second_measure]
+    #my_phrase.measures = [first_measure, second_measure]
+    my_phrase.add_measure(first_measure)
+    my_phrase.add_measure(second_measure)
     print(my_phrase.get_interval_ratio())
 
     notation = xmltranslate.create_xml_stub()
