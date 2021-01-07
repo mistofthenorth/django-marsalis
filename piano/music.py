@@ -119,6 +119,14 @@ class Phrase:
 	def add_measure(self, measure):
 		self.measures.append(measure)
 
+	def add_note(self):
+		# TODO handle the first measure
+
+		# TODO handle deciding the next note
+		
+		self.measures[-1].add_note(NoteRest(2,60))
+
+
 class Measure:
 	
 	def __init__(self, max_duration=8):
@@ -139,6 +147,7 @@ class Measure:
 	def __str__(self):
 		output_string = ''
 		return output_string.join([str(x) for x in self.notes])
+
 
 class NoteRest:
 
