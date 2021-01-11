@@ -1,3 +1,5 @@
+import random
+
 pitch_table = {
 	20 : 'Rest',
 	21 : 'A0',
@@ -120,11 +122,11 @@ class Phrase:
 		self.measures.append(measure)
 
 	def add_note(self):
-		# TODO handle the first measure
-
+		if self.measures == []:
+			self.measures.append(Measure(8))
 		# TODO handle deciding the next note
 		
-		self.measures[-1].add_note(NoteRest(2,60))
+		self.measures[-1].add_note(NoteRest(random.randint(1,8),random.randint(20,102)))
 
 
 class Measure:

@@ -77,6 +77,9 @@ def index(request):
 
 def page_test(request):
 
+    my_phrase = music.Phrase()
+    my_phrase.add_note()
+
     first_measure = music.Measure()
     note_test = music.NoteRest(4, 60)
     first_measure.add_note(note_test)
@@ -86,7 +89,6 @@ def page_test(request):
         second_measure.add_note(music.NoteRest(2,random.randint(20,102)))
     print(second_measure)
 
-    my_phrase = music.Phrase()
     #my_phrase.measures = [first_measure, second_measure]
     my_phrase.add_measure(first_measure)
     my_phrase.add_measure(second_measure)
