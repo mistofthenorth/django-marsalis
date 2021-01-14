@@ -95,9 +95,11 @@ pitch_table = {
 
 class Phrase:
 	
-	def __init__(self):
+	def __init__(self, number_of_measures):
 
 		self.measures = []
+		while len(self.measures) < number_of_measures:
+			self.add_note()
 
 	def get_interval_ratio(self):
 		previous_pitch = 20
@@ -126,7 +128,21 @@ class Phrase:
 			self.measures.append(Measure(8))
 		# TODO handle deciding the next note
 		
-		self.measures[-1].add_note(NoteRest(random.randint(1,8),random.randint(20,102)))
+		next_note = NoteRest(random.randint(1,8),random.randint(20,102))
+
+		if (next_note.duration + self.measures[-1].duration) > self.measures[-1].max_duration:
+			duration_over = (next_note.duration + self.measures[-1].duration) - self.measures[-1].max_duration
+			current_measure_next_note = NoteRest((next_note.duration - duration_over), next_note.pitch)
+			self.measures[-1].add_note(current_measure_next_note)
+			self.measures.append(Measure(8))
+			next_note.duration = duration_over
+			self.measures[-1].add_note(next_note)
+		else:
+			self.measures[-1].add_note(next_note)
+
+	def __str__(self):
+		output_string = ''
+		return output_string.join([str(x) + "\n" for x in self.measures])
 
 
 class Measure:
@@ -134,14 +150,16 @@ class Measure:
 	def __init__(self, max_duration=8):
 
 		self.notes = []
-		self.max_duration = 8
+		self.max_duration = max_duration
 	
 	@property
 	def duration(self):
 		return sum([x.duration for x in self.notes])
 
 	def add_note(self, note):
-		if self.duration + note.duration > self.max_duration:
+		if self.duration == self.max_duration:
+			print("Measure is already complete")
+		elif self.duration + note.duration > self.max_duration:
 			print("Error, too many notes in this measure")
 		else:
 			self.notes.append(note)
@@ -161,7 +179,6 @@ class NoteRest:
 	@property
 	def pitch_name(self):
 		return pitch_table[self.pitch]
-	
 
 	def __str__(self):
 		return f"({pitch_table[self.pitch]}-{self.duration})"
