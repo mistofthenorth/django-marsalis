@@ -97,8 +97,8 @@ class Phrase:
 
     def __init__(self, number_of_measures):
 
-        self.measures = []
-        while len(self.measures) < number_of_measures:
+        self.measures = [Measure(8)]
+        while (len(self.measures) < number_of_measures):
             self.add_note()
 
     def get_interval_ratio(self):
@@ -124,8 +124,6 @@ class Phrase:
         self.measures.append(measure)
 
     def add_note(self):
-        if self.measures == []:
-            self.measures.append(Measure(8))
         # TODO handle deciding the next note
 
         next_note = NoteRest(random.randint(1, 8), random.randint(20, 102))

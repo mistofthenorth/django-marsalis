@@ -104,5 +104,38 @@ def page_test(request):
 
     # html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea> <p>{note_test.pitch_name}</p>'
 
-    html = "just a test"
-    return HttpResponse(html)
+    my_note = music.NoteRest(2,83)
+
+    vex_flow = f"""
+
+    <html>
+    <script src="https://unpkg.com/vexflow/releases/vexflow-min.js"></script>
+    <body>
+    <div id="boo">Test</div>
+    <script>
+
+    const VF = Vex.Flow;
+
+    // Create an SVG renderer and attach it to the DIV element named "boo".
+    var vf = new VF.Factory({{renderer: {{elementId: 'boo'}}}});
+    var score = vf.EasyScore();
+    var system = vf.System();
+
+    system.addStave({{
+      voices: [score.voice(score.notes('{my_note.pitch_name}/q, B4, A4, G#4'))]
+    }}).addClef('treble').addTimeSignature('4/4');
+
+    vf.draw();
+
+
+
+    </script>
+
+    </body>
+
+    </html>
+
+
+    """
+
+    return HttpResponse(vex_flow)
