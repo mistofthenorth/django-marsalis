@@ -104,14 +104,18 @@ def page_test(request):
 
     # html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea> <p>{note_test.pitch_name}</p>'
 
-    my_note = music.NoteRest(2,83)
+    my_phrase = music.Phrase(4)
+    notes_list = []
+    for measures in my_phrase.measures:
+        for notes in measures.notes:
+            notes_list.append(notes.pitch_name[:3])
 
     vex_flow = f"""
 
     <html>
     <script src="https://unpkg.com/vexflow/releases/vexflow-min.js"></script>
     <body>
-    <div id="boo">Test</div>
+    <div id="boo"></div>
     <script>
 
     const VF = Vex.Flow;
@@ -122,7 +126,7 @@ def page_test(request):
     var system = vf.System();
 
     system.addStave({{
-      voices: [score.voice(score.notes('{my_note.pitch_name}/q, B4, A4, G#4'))]
+      voices: [score.voice(score.notes('{notes_list[0]}/q, {notes_list[1]}, {notes_list[2]}, {notes_list[3]}'))]
     }}).addClef('treble').addTimeSignature('4/4');
 
     vf.draw();
