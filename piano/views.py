@@ -78,31 +78,9 @@ def index(request):
 def page_test(request):
 
     my_phrase = music.Phrase(4)
-    """
-    first_measure = music.Measure()
-    note_test = music.NoteRest(4, 60)
-    first_measure.add_note(note_test)
 
-    second_measure = music.Measure()
-    while second_measure.duration < second_measure.max_duration:
-        second_measure.add_note(music.NoteRest(2,random.randint(20,102)))
-    print(second_measure)
-
-    #my_phrase.measures = [first_measure, second_measure]
-    my_phrase.add_measure(first_measure)
-    my_phrase.add_measure(second_measure)
-    print(my_phrase.get_interval_ratio())
-
-    notation = xmltranslate.create_xml_stub()
-    xmltranslate.add_part_to_xml(notation)
-
-    dom = xml.dom.minidom.parseString(tostring(notation))
-    pretty_xml_as_string = dom.toprettyxml()
-    """
     for measure in my_phrase.measures:
         print(measure)
-
-    # html = f'<textarea rows="20" cols="100">{pretty_xml_as_string}</textarea> <p>{note_test.pitch_name}</p>'
 
     my_phrase = music.Phrase(4)
     notes_list = []
