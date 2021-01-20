@@ -107,6 +107,10 @@ def page_test(request):
       voices: [score.voice(score.notes('{notes_list[0]}/q, {notes_list[1]}, {notes_list[2]}, {notes_list[3]}'))]
     }}).addClef('treble').addTimeSignature('4/4');
 
+    system.addStave({{
+      voices: [score.voice(score.notes('{notes_list[4]}/q, {notes_list[5]}, {notes_list[6]}, {notes_list[7]}'))]
+    }}).addClef('treble').addTimeSignature('4/4');
+
     vf.draw();
 
 
