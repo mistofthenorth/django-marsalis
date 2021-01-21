@@ -1,0 +1,27 @@
+    <html>
+    <script src="https://unpkg.com/vexflow/releases/vexflow-min.js"></script>
+    <body>
+    <div id="boo"></div>
+    <script>
+	{% verbatim %}
+    const VF = Vex.Flow;
+
+    // Create an SVG renderer and attach it to the DIV element named "boo".
+    var vf = new VF.Factory({renderer: {elementId: 'boo'}});
+    var score = vf.EasyScore();
+    var system = vf.System();
+
+    system.addStave({
+      voices: [score.voice(score.notes('B4/q, B3/q, B4/q, B4/q'))]
+    }).addClef('treble').addTimeSignature('4/4');
+
+
+    vf.draw();
+
+	{% endverbatim %}
+
+    </script>
+
+    </body>
+
+    </html>

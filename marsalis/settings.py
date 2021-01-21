@@ -54,7 +54,7 @@ ROOT_URLCONF = 'marsalis.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['piano/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
