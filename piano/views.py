@@ -23,5 +23,6 @@ def index(request):
 
 
     template = loader.get_template('piano/index.html')
-    context = {'test' : 'This is my context text'}
+    context = {'test' : 'This is my context text',
+                'phrase' : my_phrase}
     return HttpResponse(template.render(context, request))
