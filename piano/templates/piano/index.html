@@ -22,6 +22,20 @@
 
     </script>
 	{{phrase}}
+
+<form action="" method="get">
+{% csrf_token %}
+
+  <div class="form-row">
+    
+
+      <input type="text" name="phrase_length" class="form-control" value="4">
+    </div>
+
+  <button class="btn btn-primary" type="submit">Submit form</button>
+
+</form>
+
     </body>
 
     </html>

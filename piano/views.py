@@ -11,15 +11,12 @@ from . import music
 def index(request):
 
     try:
-        phrase_length = request.GET["phrase_length"]
+        phrase_length = int(request.GET["phrase_length"])
     except:
         phrase_length = 8
+    print(f'Phrase length is : {phrase_length}')
     my_phrase = music.Phrase(phrase_length)
 
-    for measure in my_phrase.measures:
-        print(measure)
-
-    my_phrase = music.Phrase(4)
     notes_list = []
     for measures in my_phrase.measures:
         for notes in measures.notes:
