@@ -17,12 +17,6 @@ def index(request):
     print(f'Phrase length is : {phrase_length}')
     my_phrase = music.Phrase(phrase_length)
 
-    notes_list = []
-    for measures in my_phrase.measures:
-        for notes in measures.notes:
-            notes_list.append(notes.pitch_name[:3])
-
-
     template = loader.get_template('piano/index.html')
     context = {'test' : 'This is my context text',
                 'phrase' : my_phrase}

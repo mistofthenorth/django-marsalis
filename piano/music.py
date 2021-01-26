@@ -124,8 +124,6 @@ class Phrase:
         self.measures.append(measure)
 
     def add_note(self):
-        # TODO handle deciding the next note
-
         next_note = NoteRest(random.randint(1, 8), random.randint(20, 102))
 
         if (next_note.duration + self.measures[-1].duration) > self.measures[-1].max_duration:
@@ -140,7 +138,7 @@ class Phrase:
 
     def __str__(self):
         output_string = ''
-        return output_string.join([str(x) + "\n" for x in self.measures])
+        return output_string.join([str(x) + "|\n" for x in self.measures])
 
 
 class Measure:
@@ -169,14 +167,20 @@ class Measure:
 
 class NoteRest:
 
-    def __init__(self, duration, pitch):
+    def __init__(self, duration, pitch, use_flat=True):
 
         self.duration = duration
         self.pitch = pitch
+        self.use_flat = use_flat
 
     @property
     def pitch_name(self):
         return pitch_table[self.pitch]
 
     def __str__(self):
-        return f"({pitch_table[self.pitch]}-{self.duration})"
+        if self.pitch == 20:
+            return f"({pitch_table[self.pitch]}-{self.duration})"
+        elif self.use_flat:
+            return f"({pitch_table[self.pitch][-3:]}-{self.duration})"
+        else:
+            return f"({pitch_table[self.pitch][0:3]}-{self.duration})"
