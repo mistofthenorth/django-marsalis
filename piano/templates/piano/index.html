@@ -2,7 +2,25 @@
     <script src="https://unpkg.com/vexflow/releases/vexflow-min.js"></script>
     <body>
     <div id="boo"></div>
+
+    {% for measure in phrase.measures %}
+    <!--got it <hr> -->
+        {% for note in measure.notes %}
+            <!-- {{note}} -->
+            <script>
+            const my_note = '{{note}}'
+            </script>
+        {% endfor %}
+    {% endfor %}
+    <p id="demo"></p>
+
     <script>
+        document.getElementById("demo").innerHTML = my_note;
+    </script>
+    <script>
+
+    const myphrase = '{{phrase.measures}}';
+
 	{% verbatim %}
     const VF = Vex.Flow;
 
@@ -11,17 +29,27 @@
     var score = vf.EasyScore();
     var system = vf.System();
 
-    system.addStave({
-      voices: [score.voice(score.notes('B4/q, B3/q, B4/q, B4/q'))]
-    }).addClef('treble').addTimeSignature('4/4');
+    var my_notes = my_note + '/q,';
+    phrase = my_notes + my_notes + my_notes + my_notes;
+    
+    document.getElementById("demo").innerHTML = my_notes;
 
+    //system.addStave({
+    //  voices: [score.voice(score.notes('Bb4/q, B3/q, B4/q, B4/q'))]
+    //}).addClef('treble').addTimeSignature('4/4');
+
+    system.addStave({
+      voices: [score.voice(score.notes(phrase))]
+    }).addClef('treble').addTimeSignature('4/4');
 
     vf.draw();
 
 	{% endverbatim %}
 
     </script>
-	{{phrase}}
+	<!--{{phrase}} -->
+    <hr>
+
 
 <form action="" method="get">
 {% csrf_token %}
@@ -29,7 +57,7 @@
   <div class="form-row">
     
 
-      <input type="text" name="phrase_length" class="form-control" value="4">
+      <input type="text" name="phrase_length" class="form-control" value="2">
     </div>
 
   <button class="btn btn-primary" type="submit">Submit form</button>

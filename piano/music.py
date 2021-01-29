@@ -179,8 +179,8 @@ class NoteRest:
 
     def __str__(self):
         if self.pitch == 20:
-            return f"({pitch_table[self.pitch]}-{self.duration})"
+            return f"{pitch_table[self.pitch]}"
         elif self.use_flat:
-            return f"({pitch_table[self.pitch][-3:]}-{self.duration})"
+            return f"{pitch_table[self.pitch][-3:]}"
         else:
-            return f"({pitch_table[self.pitch][0:3]}-{self.duration})"
+            return f"{pitch_table[self.pitch][0:3]}"
