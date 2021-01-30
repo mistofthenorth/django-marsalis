@@ -34,10 +34,6 @@
     
     document.getElementById("demo").innerHTML = my_notes;
 
-    //system.addStave({
-    //  voices: [score.voice(score.notes('Bb4/q, B3/q, B4/q, B4/q'))]
-    //}).addClef('treble').addTimeSignature('4/4');
-
     system.addStave({
       voices: [score.voice(score.notes(phrase))]
     }).addClef('treble').addTimeSignature('4/4');
@@ -49,7 +45,6 @@
     </script>
 	<!--{{phrase}} -->
     <hr>
-
 
 <form action="" method="get">
 {% csrf_token %}
