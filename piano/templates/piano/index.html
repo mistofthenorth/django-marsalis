@@ -1,6 +1,8 @@
     <html>
     <script src="https://unpkg.com/vexflow/releases/vexflow-min.js"></script>
     <body>
+    <div id="boo2"></div>
+
     <div id="boo"></div>
 
     {% for measure in phrase.measures %}
@@ -43,6 +45,57 @@
 	{% endverbatim %}
 
     </script>
+
+
+    <script>
+        
+    VF2 = Vex.Flow;
+
+    // Create an SVG renderer and attach it to the DIV element named "boo".
+    var div2 = document.getElementById("boo2")
+    var renderer = new VF2.Renderer(div2, VF.Renderer.Backends.SVG);
+
+    // Size our SVG:
+    renderer.resize(500, 500);
+
+    // And get a drawing context:
+    var context = renderer.getContext();
+
+    // Create a stave at position 10, 40 of width 400 on the canvas.
+    var stave = new VF.Stave(10, 40, 400);
+
+    // Add a clef and time signature.
+    stave.addClef("treble").addTimeSignature("4/4");
+
+    var notes = [
+      // A quarter-note C.
+      new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q" }),
+
+      // A quarter-note D.
+      new VF.StaveNote({clef: "treble", keys: ["d/4"], duration: "q" }),
+
+      // A quarter-note rest. Note that the key (b/4) specifies the vertical
+      // position of the rest.
+      new VF.StaveNote({clef: "treble", keys: ["b/4"], duration: "qr" }),
+
+      // A C-Major chord.
+      new VF.StaveNote({clef: "treble", keys: ["c/4", "e/4", "g/4"], duration: "q" })
+    ];
+
+    // Create a voice in 4/4 and add the notes from above
+    var voice = new VF.Voice({num_beats: 4,  beat_value: 4});
+    voice.addTickables(notes);
+
+    // Format and justify the notes to 400 pixels.
+    var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+    // Render voice
+    voice.draw(context, stave);
+
+    stave.setContext(context).draw();
+
+    </script>
+
 
 <form action="" method="get">
 {% csrf_token %}
