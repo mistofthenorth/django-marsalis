@@ -33,7 +33,7 @@
 
     var my_notes = my_note + '/q,';
     phrase = my_notes + my_notes + my_notes + my_notes;
-    
+       
     document.getElementById("demo").innerHTML = my_notes;
 
     system.addStave({
@@ -67,9 +67,11 @@
     // Add a clef and time signature.
     stave.addClef("treble").addTimeSignature("4/4");
 
+    test_note = "d/4"
+
     var notes = [
       // A quarter-note C.
-      new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q" }),
+      new VF.StaveNote({clef: "treble", keys: [test_note], duration: "q" }),
 
       // A quarter-note D.
       new VF.StaveNote({clef: "treble", keys: ["d/4"], duration: "q" }),
