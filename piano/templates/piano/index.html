@@ -37,7 +37,7 @@
 
     var notes = [
       // A quarter-note C.
-      new VF.StaveNote({clef: "treble", keys: ["A/4"], duration: "q" }),
+      new VF.StaveNote({clef: "treble", keys: ["eb/4"], duration: "q" }).addAccidental(0, new VF.Accidental("b")),
 
       // A quarter-note D.
       new VF.StaveNote({clef: "treble", keys: ["d/4"], duration: "q" }),
@@ -47,7 +47,7 @@
       new VF.StaveNote({clef: "treble", keys: ["b/4"], duration: "qr" }),
 
       // A C-Major chord.
-      new VF.StaveNote({clef: "treble", keys: ["c/4", "e/4", "g/4"], duration: "q" })
+      new VF.StaveNote({clef: "treble", keys: ["c/4", "eb/4", "g/4"], duration: "q" })
     ];
 
     // Create a voice in 4/4 and add the notes from above
